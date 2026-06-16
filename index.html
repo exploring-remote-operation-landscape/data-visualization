@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAFER's idea exploration project - Exploring Remote Operation Landscape</title>
+
+  <!-- Third-party libraries -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <!-- Application styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────────────────────── -->
+<header>
+  <h1>SAFER's idea exploration project - Exploring Remote Operation Landscape</h1>
+  <div class="header-logos">
+    <img src="logo/safer_logo.png" alt="SAFER">
+    <img src="logo/vti_logo_black.png" alt="VTI">
+    <img src="logo/Rise-logo-black.svg" alt="RISE">
+  </div>
+</header>
+
+<!-- ── Loading screen (shown while geocoding runs) ─────────────────────────── -->
+<div id="loading-section" style="display:none" class="center-card">
+  <div class="spinner-area">
+    <div class="spinner"></div>
+    <p id="loading-msg">Geocoding cities…</p>
+    <p id="loading-sub">Results are cached after the first run</p>
+  </div>
+</div>
+
+<!-- ── Main app (hidden until init completes; shown as flex by JS) ──────────── -->
+<div id="app-layout" class="app-layout">
+  <div class="main-content">
+    <div id="warning-box" class="warning-box"></div>
+
+    <!-- Map with all controls floating inside it -->
+    <div class="map-wrapper">
+
+      <!-- Two stacked icon buttons (top-left) — click to open/close each panel -->
+      <div class="map-controls">
+        <!-- Funnel → Filters panel -->
+        <button class="map-ctrl-btn" id="filter-toggle" title="Filters">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+        </button>
+        <!-- Monitor → Display panel (Color by + legend) -->
+        <button class="map-ctrl-btn" id="display-toggle" title="Display">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Filters panel — populated by buildFilters() in filters.js -->
+      <div class="map-panel" id="filter-panel">
+        <div class="panel-header-row">
+          <h3>Filters</h3>
+          <button class="clear-filters-btn" id="clear-all-filters" title="Reset all filters to All">clear all</button>
+        </div>
+        <div id="filters-container"></div>
+      </div>
+
+      <!-- Display panel — Color by dropdown + HTML legend -->
+      <div class="map-panel" id="display-panel">
+        <h3>Display</h3>
+        <div class="sidebar-colorby">
+          <label class="sidebar-label">Color by</label>
+          <!-- Populated by buildColorBy() in filters.js -->
+          <select id="color-by-select"></select>
+        </div>
+        <hr class="sidebar-divider">
+        <!-- Populated by renderMap() in map.js -->
+        <div id="map-legend" class="sidebar-legend"></div>
+      </div>
+
+      <!-- Plotly renders into this div -->
+      <div id="map"></div>
+
+    </div>
+
+    <p id="caption" class="caption"></p>
+
+    <!-- Collapsible raw data table -->
+    <div class="table-card">
+      <div class="table-toggle" id="table-toggle">
+        View data table <span id="table-arrow">&#9654;</span>
+      </div>
+      <div class="table-body" id="table-body">
+        <table id="data-table"></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────────────────────────── -->
+<footer class="logo-footer">
+  <img src="logo/safer_logo.png" alt="SAFER logo">
+  <img src="logo/vti_logo_black.png" alt="VTI logo">
+  <img src="logo/Rise-logo-black.svg" alt="RISE logo">
+</footer>
+
+<!-- ── Detail modal (opened on map marker click) ───────────────────────────── -->
+<div id="detail-overlay" class="detail-overlay">
+  <div class="detail-card">
+    <button class="detail-close" id="detail-close">&times;</button>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<!-- ── Application scripts (load order matters — data before logic, logic before main) -->
+<script src="js/data.js"></script>     <!-- DATA_CSV, PRECOMPUTED_COORDS -->
+<script src="js/geocode.js"></script>  <!-- geocodeCache, geocodeAll -->
+<script src="js/filters.js"></script>  <!-- EXPANDED_COLS, buildFilters, getFilteredData -->
+<script src="js/detail.js"></script>   <!-- DETAIL_COLS, showDetail, showMultiDetail -->
+<script src="js/map.js"></script>      <!-- renderMap, renderTable -->
+<script src="js/main.js"></script>     <!-- shared state, initWithData, event wiring -->
+
+</body>
+</html>
