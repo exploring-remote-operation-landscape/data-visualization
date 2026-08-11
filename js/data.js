@@ -36,10 +36,14 @@ const DATA_CSV = `Updated;Organization;Location;Transport domains;remote operati
 4-24-26 9:14:15;RISE, Industrial System;Stockholm;"Mining;Road;";"Direct control;";"Lab based remote operated machine;Remotely operated vehicles;";Operator's 3D perception of remote location;None in particular at the moment;
 4-24-26 9:14:15;RISE, Industrial System;Eskilstuna;"Mining;Road;";"Direct control;";"Lab based remote operated machine;Remotely operated vehicles;";Operator's 3D perception of remote location;None in particular at the moment;
 4-27-26 9:27:40;DLR (German Aerospace Center);Oldenburg, Germany;"Maritime;";"Monitoring;Assisted control;Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"Human-machine cooperation; Automated Shipping & Ports; Maritime Traffic Management";yes;
-4-27-26 11:12:08;DLR (German Aerospace Center);"Braunschweig, Germany; ";"Road;";"Assisted control;Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"user studies (laboratory, field, online); demonstration of remote operation; analysis of real-world operations (interviews with safety drivers); consulting";German Autonomous Driving Act and entailed ordinance (AFGBV), EU ADS Act (2022), SAE J3016, AVSC Remote Assistance Use Case (2023);
-4-27-26 11:12:08;DLR (German Aerospace Center);Berlin, Germany;"Road;";"Assisted control;Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"user studies (laboratory, field, online); demonstration of remote operation; analysis of real-world operations (interviews with safety drivers); consulting";German Autonomous Driving Act and entailed ordinance (AFGBV), EU ADS Act (2022), SAE J3016, AVSC Remote Assistance Use Case (2023);
+4-27-26 11:12:08;DLR (German Aerospace Center);"Braunschweig, Germany; ";"Road;";"Assisted control;Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"user studies (laboratory, field, online); demonstration of remote operation; analysis of real-world operations (interviews with safety drivers); consulting";"German Autonomous Driving Act and entailed ordinance (AFGBV); EU ADS Act (2022); SAE J3016; AVSC Remote Assistance Use Case (2023)";
+4-27-26 11:12:08;DLR (German Aerospace Center);Berlin, Germany;"Road;";"Assisted control;Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"user studies (laboratory, field, online); demonstration of remote operation; analysis of real-world operations (interviews with safety drivers); consulting";"German Autonomous Driving Act and entailed ordinance (AFGBV); EU ADS Act (2022); SAE J3016; AVSC Remote Assistance Use Case (2023)";
 4-27-26 18:15:27;Norwegian University of Science and Technology;"Norway;";"Railway;";"Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"academic research; experiments";yes;
-4-27-26 18:15:27;Norwegian University of Science and Technology;Sweden;"Railway;";"Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"academic research; experiments";yes;`;
+4-27-26 18:15:27;Norwegian University of Science and Technology;Sweden;"Railway;";"Direct control;";"Remote operation station/center;Remotely operated vehicles;System simulation;";"academic research; experiments";yes;
+8-4-26 16:34:21;Vay Technology ;Las Vegas, USA;"Road;";"Direct control;";"Remotely operated vehicles;Remote operation station/center;";;;Ole Hans
+8-4-26 16:34:21;Vay Technology ;Antwerp, Belgium;"Road;";"Direct control;";"Remotely operated vehicles;Remote operation station/center;";;;Ole Hans
+8-4-26 16:34:21;Vay Technology ;Berlin, Germany;"Road;";"Direct control;";"Remotely operated vehicles;Remote operation station/center;";;;Ole Hans
+8-5-26 15:23:17;Chair of Ergonomics, Technical University of Munich;Munich;"Road;Robotics (Manufacturing, Surgery);";"Monitoring ;Assisted control;Direct control;";"Remote operation station/center;System simulation;";"Control center design and operations; Human–AI collaboration and supervisory control; Work organisation and team coordination; Resilience and safety of socio-technical systems";"German Autonomous Driving Act and entailed ordinance (AFGBV); EU ADS Act (2022); SAE J3016; ISO/CD 17691:2026 Road vehicles — Principles for human remote support  of automated driving systems";n.grabbe [at] tum.de`;
 
 // ── Location → Country lookup ─────────────────────────────────────────────────
 // Used to derive the "Country" field during location expansion.
@@ -75,6 +79,9 @@ const LOCATION_TO_COUNTRY = {
   "Braunschweig, Germany": "Germany",
   "Berlin, Germany":       "Germany",
   "USA":                   "USA",
+  "Las Vegas, USA":        "USA",
+  "Antwerp, Belgium":      "Belgium",
+  "Munich":                "Germany",
 };
 
 // ── Pre-computed coordinates ───────────────────────────────────────────────────
@@ -113,4 +120,7 @@ const PRECOMPUTED_COORDS = {
   "Oldenburg, Germany":    { lat: 53.14118, lon:   8.21467 },
   "Braunschweig, Germany": { lat: 52.26940, lon:  10.52720 },
   "Berlin, Germany":       { lat: 52.52437, lon:  13.41053 },
+  "Las Vegas, USA":        { lat: 36.17497, lon: -115.13722 },
+  "Antwerp, Belgium":      { lat: 51.21989, lon:   4.40346 },
+  "Munich":                { lat: 48.13743, lon:  11.57549 },
 };
