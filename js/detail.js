@@ -28,7 +28,7 @@ function contactLine(row) {
   return val ? `<p class="detail-contact">Contact: ${val}</p>` : "";
 }
 
-// Formats the Updated timestamp (MM-DD-YY HH:MM:SS) as "D Month YYYY".
+// Formats the Updated timestamp (YYYY-MM-DD HH:MM:SS) as "D Month YYYY".
 function updatedLine(row) {
   const raw = (row["Updated"] || "").trim();
   if (!raw) return "";
@@ -36,8 +36,8 @@ function updatedLine(row) {
     "January","February","March","April","May","June",
     "July","August","September","October","November","December",
   ];
-  const [m, d, y] = raw.split(" ")[0].split("-").map(Number);
-  return `<p class="detail-updated">last updated: ${d} ${MONTHS[m - 1]} ${2000 + y}</p>`;
+  const [y, m, d] = raw.split(" ")[0].split("-").map(Number);
+  return `<p class="detail-updated">last updated: ${d} ${MONTHS[m - 1]} ${y}</p>`;
 }
 
 // ── Single-org detail ─────────────────────────────────────────────────────────
