@@ -41,9 +41,13 @@ function updatedLine(row) {
 }
 
 // Returns a "Source: …" line if the row has a non-empty Source field, otherwise "".
+// Any http(s) URLs in the value are rendered as links opening in a new tab.
 function sourceLine(row) {
   const val = (row["Source"] || "").trim();
-  return val ? `<p class="detail-updated">Source: ${val}</p>` : "";
+  if (!val) return "";
+  const linked = val.replace(/https?:\/\/\S+/g,
+    url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+  return `<p class="detail-updated detail-source">Source: ${linked}</p>`;
 }
 
 // ── Single-org detail ─────────────────────────────────────────────────────────

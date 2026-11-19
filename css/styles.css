@@ -305,6 +305,8 @@ tbody tr:last-child td { border-bottom: none; }
 .detail-list li { margin-bottom: 0.1rem; }
 .detail-contact { font-size: 0.88rem; margin-top: 1rem; }
 .detail-updated { font-size: 0.78rem; color: #aaa; margin-top: 0.4rem; font-style: italic; }
+.detail-source  { overflow-wrap: anywhere; }
+.detail-source a { color: inherit; }
 
 /* ── Footer ──────────────────────────────────────────────────────────────────── */
 .logo-footer {
