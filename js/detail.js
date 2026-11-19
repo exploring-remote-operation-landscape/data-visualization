@@ -37,7 +37,13 @@ function updatedLine(row) {
     "July","August","September","October","November","December",
   ];
   const [y, m, d] = raw.split(" ")[0].split("-").map(Number);
-  return `<p class="detail-updated">last updated: ${d} ${MONTHS[m - 1]} ${y}</p>`;
+  return `<p class="detail-updated">Last updated: ${d} ${MONTHS[m - 1]} ${y}</p>`;
+}
+
+// Returns a "Source: …" line if the row has a non-empty Source field, otherwise "".
+function sourceLine(row) {
+  const val = (row["Source"] || "").trim();
+  return val ? `<p class="detail-updated">Source: ${val}</p>` : "";
 }
 
 // ── Single-org detail ─────────────────────────────────────────────────────────
@@ -50,7 +56,8 @@ function showDetail(row) {
       .map(c => `<div class="detail-row"><strong>${c}</strong>${formatDetailValue(row[c])}</div>`)
       .join("") +
     contactLine(row) +
-    updatedLine(row);
+    updatedLine(row) +
+    sourceLine(row);
   document.getElementById("detail-overlay").classList.add("open");
 }
 
@@ -88,5 +95,6 @@ function renderTabContent(row) {
       .map(c => `<div class="detail-row"><strong>${c}</strong>${formatDetailValue(row[c])}</div>`)
       .join("") +
     contactLine(row) +
-    updatedLine(row);
+    updatedLine(row) +
+    sourceLine(row);
 }
